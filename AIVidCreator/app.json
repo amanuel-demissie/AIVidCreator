@@ -1,6 +1,7 @@
 {
   "expo": {
     "name": "AIVidCreator",
+    "scheme": "aividcreator",
     "slug": "AIVidCreator",
     "version": "1.0.0",
     "orientation": "portrait",
