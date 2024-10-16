@@ -21,3 +21,7 @@ Tabs
 
 13. Use Tabs components and Tabs.Screen components
 14. Created a TabIcon to use in the Tabs.Screen component for the property tabBarIcon
+
+Index.jsx
+15. Style onboard screen using ScrollView, SafeAreaView, etc, ...
+16. Create CustomButton under components folder
