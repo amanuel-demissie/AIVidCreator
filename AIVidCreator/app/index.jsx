@@ -1,22 +1,30 @@
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
-import { Link } from 'expo-router';
+import { ScrollView, StyleSheet, Text, View, Image } from 'react-native';
+import { Link, router } from 'expo-router';
+import { SafeAreaView } from 'react-native-safe-area-context';
+import { images } from './../constants';
+import CustomButton from '../components/CustomButton';
 
 export default function App() {
   return (
-    <View className="flex-1 items-center justify-center bg-white" >
-      <Text className="text-3xl font-psemibold " > App.js to start working on your app!</Text>
-      <Link href="/home" className="text-lg text-blue-600" >Go to home</Link>
-      <StatusBar style="auto" />
-    </View>
+    <SafeAreaView className="bg-black-100" >
+        <ScrollView contentContainerStyle={{height: '100%'}} >
+            <View className="items-center justify-center" >
+                <Image className="w-[136px] h-[84px]" source={images.logo} resizeMode='contain' />
+                <Image source={images.cards}  className="w-[300px] h-[300px]" />
+            </View>
+
+            <View className="relative mt-5" >
+            <Text className="text-3xl text-white font-bold text-center px-4 " >Discover endless possibilities with 
+             {' '} <Text className="text-secondary-200" >Aora</Text> </Text>
+
+            <Image source={images.path} className="w-[130px] h-[15px] absolute-bottom-2 -right-40"/>
+          </View>
+
+          <Text className="text-gray-100 text-sm mt-5 text-center font-pregular" >Where creativity meets innovation: embark on a limitless journey with Aora</Text>
+          <CustomButton title="Continue with email" handlePress={() => router.push('/sign-in')} containerStyles="mt-7" />
+
+        </ScrollView>
+    </SafeAreaView>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
