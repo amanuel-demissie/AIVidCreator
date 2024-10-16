@@ -25,3 +25,6 @@ Tabs
 Index.jsx
 15. Style onboard screen using ScrollView, SafeAreaView, etc, ...
 16. Create CustomButton under components folder
+
+Auth
+17. Created a custom input field called /components/FormField for my sign-in and sign-up page
