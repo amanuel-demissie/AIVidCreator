@@ -28,3 +28,7 @@ Index.jsx
 
 Auth
 17. Created a custom input field called /components/FormField for my sign-in and sign-up page
+
+18. Set up appWrite by creating a project and collection of databases within it for users and videos
+19. Create /lib/appWrite.js file
+20. Import createUser to sign-up from /lib/appwrite.js

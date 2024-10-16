@@ -6,6 +6,7 @@ import {images} from '../../constants'
 import FormField from '../../components/FormField'
 import CustomButton from '../../components/CustomButton'
 import { Link, router } from 'expo-router'
+import { createUser } from '../lib/appwrite'
 
 
 const SignUp = () => {
@@ -20,10 +21,7 @@ const SignUp = () => {
   })
 
   const submit = async () => {
-
-
-
-
+    createUser();
   }
 
   
