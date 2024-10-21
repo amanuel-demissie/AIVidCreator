@@ -20,11 +20,48 @@ const account = new Account(client); //const of account
 const avatars = new Avatars(client);
 const databases = new Databases(client);
 
-export const createUser = () => {
-    account.create(ID.unique(), 'johndoe@example.com', 'john12345', 'John Doe' )
-    .then(function (response){
-        console.log(response);
-    }, function (error){
+export const createUser = async(email, password, username) => {
+    try{
+
+        const newAccount = await account.create(
+            ID.unique(),
+            email,
+            password,
+            username
+        )
+
+        if(!newAccount) throw Error; //throw error if account creation fails
+
+        const avatarUrl = avatars.getInitials(username); //if account created successfully, get avatar url(for profile picture)
+
+        await signIn(email, password);
+
+        const newUser = databases.createDocument( //create a new document in user collection(basically user profile info)
+            config.databaseId,
+            config.userCollectionId,
+            ID.unique(),
+            {
+                accountId: newAccount.$id,
+                email,
+                username,
+                avatar: avatarUrl
+            }
+        )
+
+        return newUser;
+
+    } catch(error){
         console.log(error);
-    });
+        throw new Error(error);
+    }
 }
+
+export const signIn = async(email, password)  => {
+    try{
+        const session = await account.createEmailPasswordSession(email, password) //Allow the user to login into their account by providing a valid email and password combination. This route will create a new session for the user.
+        return session;
+    } catch(error) {
+        throw new Error(error);
+    }
+}
+
