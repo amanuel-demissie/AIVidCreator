@@ -5,7 +5,7 @@ import { images } from '../../constants'
 import FormField from '../../components/FormField'
 import CustomButton from '../../components/CustomButton'
 import { Link, router } from 'expo-router'
-import { createUser } from '../lib/appwrite'
+import { createUser, signIn } from '../lib/appwrite'
 
 
 
@@ -15,9 +15,32 @@ const SignIn = () => {
     const [isSubmitting, setIsSubmitting] = useState(false);
     
 
-  const submit = async () => {
-    
-  }
+  
+    const submit = async () => {
+
+      if (form.email === "" || form.password === "") {
+        Alert.alert("Error", "Please fill in all fields");
+      }
+  
+      setIsSubmitting(true); // isSubmitting is set to true if the any of the form feilds are not empty
+  
+  
+      try{
+  
+        await signIn(form.email, form.password) // awaiting session for user
+        // set it to global state... remembers when a user is logged in and keeps them logged in instead of signing up again
+        
+  
+        router.replace('/home') //redirected to home page after sign up
+  
+      } catch(error){
+        Alert.alert('Error', error.message)
+      } finally {
+        setIsSubmitting(false);
+      }
+  
+    }
+
 
   return (
     <SafeAreaView className="h-full bg-primary" >

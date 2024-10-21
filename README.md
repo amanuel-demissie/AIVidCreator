@@ -32,4 +32,6 @@ Auth
 18. Set up appWrite by creating a project and collection of databases within it for users and videos
 19. Create /lib/appWrite.js file and write a createUser function and a signIn function
 20. Import createUser to /auth/sign-up from /lib/appwrite.js and edit your submit function
+21. Import signIn from /lib/appwrite.js to /auth/sign-in and edit submit function(very similar to the sign-up submit function)
+ 
 

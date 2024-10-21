@@ -36,7 +36,7 @@ const SignUp = () => {
       //setUser(result);
       //setIsLoggedIn(true);
 
-      router.replace('/home')
+      router.replace('/home') //redirected to home page after sign up
 
     } catch(error){
       Alert.alert('Error', error.message)
@@ -44,8 +44,6 @@ const SignUp = () => {
       setIsSubmitting(false);
     }
 
-
-    //createUser();
   }
 
   

@@ -36,7 +36,7 @@ export const createUser = async(email, password, username) => {
 
         await signIn(email, password);
 
-        const newUser = databases.createDocument( //create a new document in user collection(basically user profile info)
+        const newUser = await databases.createDocument( //create a new document in user collection(basically user profile info)
             config.databaseId,
             config.userCollectionId,
             ID.unique(),
