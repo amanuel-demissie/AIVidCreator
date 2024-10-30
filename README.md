@@ -33,5 +33,10 @@ Auth
 19. Create /lib/appWrite.js file and write a createUser function and a signIn function
 20. Import createUser to /auth/sign-up from /lib/appwrite.js and edit your submit function
 21. Import signIn from /lib/appwrite.js to /auth/sign-in and edit submit function(very similar to the sign-up submit function)
+
+GlobalProvider(to stay logged in once logged in)
+22. Create a GlobalProvider for all screens ../context/GlobalProvider.js
+23. Wrap all the screens(Stacks in layout.jsx) with the GlobalProvider
+23. Edit the sign-up.jsx, sign-in.jsx and index.jsx(with setUser and setIsLogged in sign-up and sign-in and isLoading, isLoggedIn in index.jsx)
  
 

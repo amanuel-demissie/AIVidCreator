@@ -58,10 +58,32 @@ export const createUser = async(email, password, username) => {
 
 export const signIn = async(email, password)  => {
     try{
+
         const session = await account.createEmailPasswordSession(email, password) //Allow the user to login into their account by providing a valid email and password combination. This route will create a new session for the user.
         return session;
     } catch(error) {
+        
         throw new Error(error);
     }
 }
 
+export const getCurrentUser = async() => {
+    try{
+
+        const currentAccount = await account.get() //Get the current session. This route will return the session details if the user is authenticated.
+        if(!currentAccount) throw Error;
+
+        const currentUser = await databases.listDocuments(
+            config.databaseId, 
+            config.userCollectionId, 
+            [Query.equal('accountId', currentAccount.$id)]) //Get the user document from the user collection.
+        
+        if(!currentUser) throw Error;
+
+        return currentUser;
+
+    } catch(error){
+        console.log(error);
+        return null;
+    }
+}

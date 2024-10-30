@@ -1,11 +1,16 @@
 import { StatusBar } from 'expo-status-bar';
 import { ScrollView, StyleSheet, Text, View, Image } from 'react-native';
-import { Link, router } from 'expo-router';
+import { Link, router, Redirect } from 'expo-router';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { images } from './../constants';
 import CustomButton from '../components/CustomButton';
+import { useGlobalContext } from '../context/GlobalProvider';
+//import { useGlobalContext } from '../context/GlobalProvider';
+
 
 export default function App() {
+  const {isLoading, isLoggedIn} = useGlobalContext();
+  if(!isLoading && isLoggedIn) return <Redirect href = '/home' />
   return (
     <SafeAreaView className="bg-black-100" >
         <ScrollView contentContainerStyle={{height: '100%'}} >
