@@ -39,4 +39,16 @@ GlobalProvider(to stay logged in once logged in)
 23. Wrap all the screens(Stacks in layout.jsx) with the GlobalProvider
 23. Edit the sign-up.jsx, sign-in.jsx and index.jsx(with setUser and setIsLogged in sign-up and sign-in and isLoading, isLoggedIn in index.jsx)
  
+Home tab
+24. Edit the home tab with the main component being a FlatList
+25. Create a new component called SearchInput
+26. Create a new component called Trending.jsx for the horizontal video list
+27. Create EmptyState component(what to display if flatlist data in home is empty)
+28. Create a new component called Trending with a horizontal scrollable Flatlist
+
+
+
+
+
+
 
