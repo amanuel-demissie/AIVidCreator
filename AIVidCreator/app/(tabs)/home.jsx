@@ -1,30 +1,40 @@
-import { View, Text, Image, RefreshControl, FlatList } from 'react-native'
+import { View, Text, Image, RefreshControl, FlatList, Alert } from 'react-native'
 import { StatusBar } from 'expo-status-bar'
-import {React, useState} from 'react'
+import {React, useState, useEffect} from 'react'
 import { SafeAreaView } from 'react-native-safe-area-context'
 import {images} from '../../constants'
 import SearchInput from '../../components/SearchInput'
 import Trending from '../../components/Trending'
 import EmptyState from '../../components/EmptyState'
+import  {getAllPosts}  from '../../lib/appwrite'
+import useAppwrite from '../../lib/useAppwrite'
+import VideoCard from '../../components/VideoCard'
 
 const Home = () => {
-  
+
+  //made into a custom hook because we need to fetch data similarily in each tab(more efficient)
+  const {data: posts, refetch} = useAppwrite(getAllPosts); //get data and rename to posts, get the function refetch too
+
   const [refreshing, setRefreshing] = useState(false)
 
   const onRefresh = async() => { // refresh and display loading state for any new videos
     setRefreshing(true)
-    // recall videos -> if any new videos are added
+    // recall videos -> if any new videos are added(when you swipe up)
+    refetch(); 
+    
     setRefreshing(false)
   }
+
+  //console.log(posts);
 
   return (
     <SafeAreaView className="bg-primary h-full">
       <FlatList 
-        data={[{id: 1}, {id: 2}, {id: 3}, ]}
+        data={posts} //array of posts(objects)
         //data = {[]}
-        keyExtractor={(item) => item.$id} //item represents each object in the array of data
+        keyExtractor={(item) => item.$id} //item represents each object in the array of data(posts)
         renderItem={({item}) => (
-          <Text className="text-3xl text-white" >{item.id}</Text>
+          <VideoCard video={item} />
         )}
         ListHeaderComponent={() => (
           <View className="my-6 px-4 space-y-6 " >

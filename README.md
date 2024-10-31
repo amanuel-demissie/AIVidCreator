@@ -46,6 +46,9 @@ Home tab
 27. Create EmptyState component(what to display if flatlist data in home is empty)
 28. Create a new component called Trending with a horizontal scrollable Flatlist
 
+29. useAppwrite hook created ..lib/useAppwrite to be called in most pages for more efficiency(home, bookmark, etc ...)
+30. Create a new component called ../components/VideoCard that should be called in home as a renderItem in the FlatList
+
 
 
 

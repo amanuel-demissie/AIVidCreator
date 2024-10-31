@@ -87,3 +87,19 @@ export const getCurrentUser = async() => {
         return null;
     }
 }
+
+export const getAllPosts = async() => {
+    try{
+        const posts = await databases.listDocuments(
+            config.databaseId, 
+            config.videoCollectionId, 
+            ) //Get all the videos from the video collection.
+
+        return posts.documents;
+
+    }catch(error){
+        console.log("Error from getAllPosts function: ",error);
+        throw new Error(error);
+
+    }
+}
