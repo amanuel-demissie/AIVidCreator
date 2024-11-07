@@ -103,3 +103,21 @@ export const getAllPosts = async() => {
 
     }
 }
+
+
+export const getLatestPosts = async() => {
+    try{
+        const posts = await databases.listDocuments(
+            config.databaseId, 
+            config.videoCollectionId, 
+            [Query.orderDesc('$createdAt', Query.limit(7))] //query to filter out posts(latest to be displayed)
+            ) //Get all the videos from the video collection.
+
+        return posts.documents;
+
+    }catch(error){
+        console.log("Error from getLatestPosts function: ",error);
+        throw new Error(error);
+
+    }
+}

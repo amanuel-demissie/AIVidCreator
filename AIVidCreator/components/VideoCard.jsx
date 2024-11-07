@@ -1,9 +1,10 @@
 import { View, Text, Image, TouchableOpacity } from 'react-native'
 import React, { useState } from 'react'
 import { icons } from '../constants'
+import { Video, ResizeMode} from 'expo-av'
 
 const VideoCard = ({video: {title, thumbnail, video, creator: {username, avatar}}}) => {// destructure item(each object from the posts array)
-  const[play, setPlay] = useState(false); //useState so that the videos won't start playing off the bat  
+  const[play, setPlay] = useState(false); //useState so that the videos won't start playing off the bat, used in the function for onPress in TouchableOpacity component  
   return (
     //flex-col to show one below the other(vertically)
     <View className="flex-col items-center px-4 mb-14" >
@@ -21,10 +22,21 @@ const VideoCard = ({video: {title, thumbnail, video, creator: {username, avatar}
                 <Image source={icons.menu} className="w-5 h-5" resizeMode='contain' />
             </View>
         </View>
-        {play ? (
-            <Text>Playing</Text>) : (
-            <TouchableOpacity className="w-full h-60 rounded-xl mt-3 relative justify-center items-center" >
+        {play ? ( // condition if true displays playing video and false, an image with a play icon is displayed
+            <Video 
+            source={{uri: `${video}`}} 
+            className="w-full h-72 rounded-xl mt-3" 
+            resizeMode= {ResizeMode.CONTAIN} 
+            useNativeControls 
+            shouldPlay
+            onPlaybackStatusUpdate={(status) => {
+                if(status.didJustFinish) {
+                    setPlay(false); //after video finishes playing, set play to false (to show thumbnail)
+                }
+            }} />) : (
+            <TouchableOpacity onPress={() => setPlay(true)} activeOpacity={0.7} className="w-full h-60 rounded-xl mt-3 relative justify-center items-center" >
                 <Image source = {{uri: thumbnail}} className="w-full h-full rounded-xl mt-3" resizeMode='cover' />
+                <Image source= {icons.play} className="h-12 w-12 absolute" />
             </TouchableOpacity>)}
     </View>
   )

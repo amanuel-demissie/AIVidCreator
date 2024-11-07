@@ -48,6 +48,13 @@ Home tab
 
 29. useAppwrite hook created ..lib/useAppwrite to be called in most pages for more efficiency(home, bookmark, etc ...)
 30. Create a new component called ../components/VideoCard that should be called in home as a renderItem in the FlatList
+31. New function called getLatestPosts, similar to getAllPosts should be called in the Home tab using the useAppwrite hook
+
+32. npm install react-native-animatable expo-av --save (helps animate components in the app and a package that allows videos to play in the app)
+33. import * as Animatable from 'react-native-animatable' in Trending.jsx(used in TrendingItem component)
+34. import {Video, ResizeMode} from 'expo-av' components to be used in TrendingItem, source of the video playing being from {uri: item.video}
+35. Replace <Text> component in VideoCard.jsx with the same <Video> component in Trending.jsx that should display a playing video when play is true
+
 
 
 
