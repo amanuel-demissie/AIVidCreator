@@ -121,3 +121,20 @@ export const getLatestPosts = async() => {
 
     }
 }
+
+export const searchPosts = async(query) => {
+    try{
+        const posts = await databases.listDocuments(
+            config.databaseId, 
+            config.videoCollectionId, 
+            [Query.search('title', query)] //search query by title
+            ) //Get all the videos from the video collection.
+
+        return posts.documents;
+
+    }catch(error){
+        console.log("Error from getLatestPosts function: ",error);
+        throw new Error(error);
+
+    }
+}

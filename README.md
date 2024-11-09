@@ -55,6 +55,10 @@ Home tab
 34. import {Video, ResizeMode} from 'expo-av' components to be used in TrendingItem, source of the video playing being from {uri: item.video}
 35. Replace <Text> component in VideoCard.jsx with the same <Video> component in Trending.jsx that should display a playing video when play is true
 
+SearchInput
+36. Edit SearchInput.jsx component to reroute onPress to /search/[query]
+37. Add a function searchPosts in appwrite.js to return posts searched by specific titles(query)
+
 
 
 
