@@ -58,6 +58,9 @@ Home tab
 SearchInput
 36. Edit SearchInput.jsx component to reroute onPress to /search/[query]
 37. Add a function searchPosts in appwrite.js to return posts searched by specific titles(query)
+38. Edit search/[query].jsx(very similar to home page)
+39. Tip: do not forget to pass searchPosts() as a function, not an object(meaning it already executes and passes in the post results instead of the function itself in useAppwrite(searchPosts(query))
+40. Create index in cloud.appwrite video collection in the jsm_aora database for search to work
 
 
 

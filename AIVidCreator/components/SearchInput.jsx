@@ -3,10 +3,10 @@ import React, { useState } from 'react'
 import { icons } from '../constants';
 import { usePathname, router } from 'expo-router';
 
-const SearchInput = () => {
+const SearchInput = ({initialQuery}) => {
 
     const pathname = usePathname(); //returns the path name of the input element that contains the search input element
-    const [query, setQuery] = useState('');
+    const [query, setQuery] = useState(initialQuery || '');
 
   return (
     
