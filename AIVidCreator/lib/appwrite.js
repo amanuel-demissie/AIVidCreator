@@ -80,7 +80,7 @@ export const getCurrentUser = async() => {
         
         if(!currentUser) throw Error;
 
-        return currentUser;
+        return currentUser.documents[0];
 
     } catch(error){
         console.log(error);
@@ -113,6 +113,8 @@ export const getLatestPosts = async() => {
             [Query.orderDesc('$createdAt', Query.limit(7))] //query to filter out posts(latest to be displayed)
             ) //Get all the videos from the video collection.
 
+            
+
         return posts.documents;
 
     }catch(error){
@@ -133,8 +135,28 @@ export const searchPosts = async(query) => {
         return posts.documents;
 
     }catch(error){
-        console.log("Error from getLatestPosts function: ",error);
+        console.log("Error from searchPosts function: ",error);
         throw new Error(error);
 
     }
 }
+
+export const getUserPosts = async(userId) => {
+    try{
+        const posts = await databases.listDocuments(
+            config.databaseId, 
+            config.videoCollectionId, 
+            [Query.equal("creator", userId)] //where the creator is equal to userId
+            ); //Get all the videos from the video collection.
+            
+        
+
+        return posts.documents;
+
+    }catch(error){
+        console.log("Error from getUserPosts function: ",error);
+        throw new Error(error);
+
+    }
+}
+

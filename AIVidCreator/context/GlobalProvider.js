@@ -15,11 +15,12 @@ const GlobalProvider = ({children}) => { //
             if(res){
                 setIsLoggedIn(true);
                 setUser(res);
+                //console.log("User is logged in:", res);
             } else {
                 setIsLoggedIn(false);
             }
         }).catch((error) => {
-            console.log(error);
+            console.log( "Error from GlobalProvider:", error);
         }).finally(() => {
             setIsLoading(false);
         })

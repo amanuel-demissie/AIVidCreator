@@ -62,6 +62,12 @@ SearchInput
 39. Tip: do not forget to pass searchPosts() as a function, not an object(meaning it already executes and passes in the post results instead of the function itself in useAppwrite(searchPosts(query))
 40. Create index in cloud.appwrite video collection in the jsm_aora database for search to work
 
+Profile tab
+41. Create a getUserPosts(userId) function in appwrite.js
+42. const {user, setUser, setIsLoggedIn} = useGlobalContext(); //can extact the user(for the userId), etc... from global context in profile.jsx
+
+43. Create new component InfoBox.jsx to be used in profile.jsx
+
 
 
 

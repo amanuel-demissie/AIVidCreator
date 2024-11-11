@@ -6,10 +6,12 @@ import FormField from '../../components/FormField'
 import CustomButton from '../../components/CustomButton'
 import { Link, router } from 'expo-router'
 import { createUser, getCurrentUser, signIn } from '../../lib/appwrite'
+import { useGlobalContext } from '../../context/GlobalProvider'
 
 
 
 const SignIn = () => {
+  const {user, setUser, setIsLoggedIn} = useGlobalContext();
 
     const [form, setForm] = useState({email: '', password: ''}); //useState hook to manage form state(submissions, default is empty)
     const [isSubmitting, setIsSubmitting] = useState(false);
@@ -31,13 +33,14 @@ const SignIn = () => {
         // set it to global state... remembers when a user is logged in and keeps them logged in instead of signing up again
         const result = await getCurrentUser();
         setUser(result);
-        setIsLogged(true);
+        setIsLoggedIn(true);
+        console.log("This is user id:",user.$id);
         
         Alert.alert("Success", "User signed in successfully");
         router.replace('/home') //redirected to home page after sign in
   
       } catch(error){
-        Alert.alert('Error yea', error.message)
+        Alert.alert('Error from sign-in', error.message)
       } finally {
         setIsSubmitting(false);
       }
