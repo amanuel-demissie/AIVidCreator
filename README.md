@@ -67,6 +67,8 @@ Profile tab
 42. const {user, setUser, setIsLoggedIn} = useGlobalContext(); //can extact the user(for the userId), etc... from global context in profile.jsx
 
 43. Create new component InfoBox.jsx to be used in profile.jsx
+44. Create signOut function in appwrite.jsx to logout from profile(import  {getUserPosts, searchPosts, signOut}  from '../../lib/appwrite')
+
 
 
 

@@ -11,14 +11,15 @@ import { useGlobalContext } from '../../context/GlobalProvider'
 
 
 const SignIn = () => {
-  const {user, setUser, setIsLoggedIn} = useGlobalContext();
-
+  
+    const {user, setUser, setIsLoggedIn} = useGlobalContext();
     const [form, setForm] = useState({email: '', password: ''}); //useState hook to manage form state(submissions, default is empty)
     const [isSubmitting, setIsSubmitting] = useState(false);
     
 
   
     const submit = async () => {
+      
 
       if (form.email === "" || form.password === "") {
         Alert.alert("Error", "Please fill in all fields");
@@ -34,7 +35,7 @@ const SignIn = () => {
         const result = await getCurrentUser();
         setUser(result);
         setIsLoggedIn(true);
-        console.log("This is user id:",user.$id);
+        //console.log("This is user id:",user.$id);
         
         Alert.alert("Success", "User signed in successfully");
         router.replace('/home') //redirected to home page after sign in

@@ -2,9 +2,9 @@ import { View, Text, FlatList, TouchableOpacity, Image } from 'react-native'
 import { StatusBar } from 'expo-status-bar'
 import {React, useEffect} from 'react'
 import { SafeAreaView } from 'react-native-safe-area-context'
-import SearchInput from '../../components/SearchInput'
+import { router } from 'expo-router'
 import EmptyState from '../../components/EmptyState'
-import  {getUserPosts, searchPosts}  from '../../lib/appwrite'
+import  {getUserPosts, searchPosts, signOut}  from '../../lib/appwrite'
 import useAppwrite from '../../lib/useAppwrite'
 import VideoCard from '../../components/VideoCard'
 import { useGlobalContext } from '../../context/GlobalProvider'
@@ -19,7 +19,14 @@ const Profile = () => {
   const {data: posts} = useAppwrite( () => getUserPosts(user.$id)); //get data and rename to posts, get the function refetch too
   //console.log(posts);
 
-  const logout = () => {
+  const logout = async() => {
+    await signOut();
+
+    
+    setUser(null); //clear user from context
+    setIsLoggedIn(false); 
+
+    router.replace('/sign-in');
 
   }
 
@@ -45,21 +52,27 @@ const Profile = () => {
 
             </View>
 
-            
+            <InfoBox
+                title={user?.username}
+                
+                titleStyles="text-lg"  
+              />
 
             <View className="mt-5 flex-row" >
               <InfoBox
                 title={posts.length || 0}
                 subtitle="Posts"
                 containerStyles="mr-10"
-                titleStyles="text-lg"  
+                titleStyles="text-xl"  
               />
 
               <InfoBox
-                title={user?.username}
+                title='1.2k'
                 subtitle="Followers"
                 titleStyles="text-xl"  
               />
+
+              
             </View>
 
           </View>
